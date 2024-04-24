@@ -1,5 +1,6 @@
 # Magento2: Hide Empty Categories
 
+![](details.png)
 
 ## Installation
 
