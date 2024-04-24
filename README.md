@@ -17,3 +17,5 @@ bin/magento config:set hgati_hide_empty_categories/general/enable 1
 # Disable (defalt value is disabled)
 bin/magento config:set hgati_hide_empty_categories/general/enable 0
 ```
+
+- Performance drastically deteriorates when dealing with a large number, around 400, of categories because each category needs to be processed individually in a loop.
