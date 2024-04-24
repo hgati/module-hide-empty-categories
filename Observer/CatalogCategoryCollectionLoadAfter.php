@@ -7,14 +7,27 @@ use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\ResourceModel\Category\Collection;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class CatalogCategoryCollectionLoadAfter implements ObserverInterface
 {
+    const CONFIG_PATH = 'hgati_hide_empty_categories/general/enable';
+
+    protected $scopeConfig;
+
+    public function __construct(ScopeConfigInterface $scopeConfig)
+    {
+        $this->scopeConfig = $scopeConfig;
+    }
+
     /**
      * @inheritDoc
      */
     public function execute(Observer $observer)
     {
+        $isEnabled = $this->getConfigValue();
+        if(!$isEnabled) return;
+
         $visibleCategories = [];
 
         /** @var Collection $categoryCollection */
@@ -47,4 +60,9 @@ class CatalogCategoryCollectionLoadAfter implements ObserverInterface
     {
         return $category->getProductCollection()->count() > 0;
     }
+
+    public function getConfigValue()
+    {
+        return empty($this->scopeConfig->getValue(self::CONFIG_PATH))?false:true;
+    }    
 }
