@@ -33,7 +33,7 @@ class CatalogCategoryCollectionLoadAfter implements ObserverInterface
     {
         $isEnabled = $this->getConfigValue();
         if(!$isEnabled) {
-            $this->logger->info('Hgati_HideEmptyCategories:: Disabled, so skipped!');
+            $this->logger->info('Hgati_HideEmptyCategories:: disabled, so skipped!');
             return;
         }
 
@@ -53,7 +53,7 @@ class CatalogCategoryCollectionLoadAfter implements ObserverInterface
                 }
             }
         }
-        $this->logger->debug(print_r($visibleCategories));
+        $this->logger->debug('Hgati_HideEmptyCategories:: '.var_export($visibleCategories,true));
 
         foreach ($categoryCollection as $category) {
             if (!array_key_exists($category->getId(), $visibleCategories)) {
