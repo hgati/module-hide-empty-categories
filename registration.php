@@ -5,6 +5,6 @@ use Magento\Framework\Component\ComponentRegistrar;
 
 ComponentRegistrar::register(
     ComponentRegistrar::MODULE,
-    'StackExchange_HideEmptyCategories',
+    'Hgati_HideEmptyCategories',
     __DIR__
 );

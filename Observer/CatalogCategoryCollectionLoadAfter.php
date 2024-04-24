@@ -1,13 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace StackExchange\HideEmptyCategories\Observer;
+namespace Hgati\HideEmptyCategories\Observer;
 
 use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\ResourceModel\Category\Collection;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
-use function array_key_exists;
 
 class CatalogCategoryCollectionLoadAfter implements ObserverInterface
 {
