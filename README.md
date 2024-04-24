@@ -10,7 +10,7 @@ bin/magento setup:upgrade
 ```
 
 ### Enable / Deisable by Magento CLI Commnad
-```
+```bash
 cd /var/www/magento
 # Enable
 bin/magento config:set hgati_hide_empty_categories/general/enable 1
