@@ -8,6 +8,7 @@ use Magento\Catalog\Model\ResourceModel\Category\Collection;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Psr\Log\LoggerInterface;
 
 class CatalogCategoryCollectionLoadAfter implements ObserverInterface
 {
@@ -15,9 +16,14 @@ class CatalogCategoryCollectionLoadAfter implements ObserverInterface
 
     protected $scopeConfig;
 
-    public function __construct(ScopeConfigInterface $scopeConfig)
-    {
+    protected $logger;
+
+    public function __construct(
+        ScopeConfigInterface $scopeConfig,
+        LoggerInterface $logger
+    ) {
         $this->scopeConfig = $scopeConfig;
+        $this->logger = $logger;
     }
 
     /**
@@ -26,7 +32,10 @@ class CatalogCategoryCollectionLoadAfter implements ObserverInterface
     public function execute(Observer $observer)
     {
         $isEnabled = $this->getConfigValue();
-        if(!$isEnabled) return;
+        if(!$isEnabled) {
+            $this->logger->info('Hgati_HideEmptyCategories:: Disabled, so skipped!');
+            return;
+        }
 
         $visibleCategories = [];
 
@@ -44,6 +53,7 @@ class CatalogCategoryCollectionLoadAfter implements ObserverInterface
                 }
             }
         }
+        $this->logger->debug(print_r($visibleCategories));
 
         foreach ($categoryCollection as $category) {
             if (!array_key_exists($category->getId(), $visibleCategories)) {
