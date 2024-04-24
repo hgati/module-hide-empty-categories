@@ -9,7 +9,7 @@ composer require hgati/module-hide-empty-categories:dev-master
 bin/magento setup:upgrade
 ```
 
-## Enable / Deisable by Magento CLI Commnad
+### Enable / Deisable by Magento CLI Commnad
 ```
 cd /var/www/magento
 # Enable
