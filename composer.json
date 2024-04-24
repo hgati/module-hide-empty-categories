@@ -7,9 +7,6 @@
             "email": "cobays@gmail.com"
         }
     ],
-    "require": {
-        "php": ">= 8.2"
-    },
     "type": "magento2-module",
     "license": [
         "OSL-3.0"
